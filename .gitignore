@@ -32,3 +32,4 @@ yarn-error.log*
 dist
 apps/*/src/routes/(api)
 /out
+.vercel
