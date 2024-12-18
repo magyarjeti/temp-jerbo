@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jerbo-mehrlicht
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/auth-secret: jerbo-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mehrlicht.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-mehrlicht
+                port:
+                  number: 80

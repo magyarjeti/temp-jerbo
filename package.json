@@ -1,0 +1,22 @@
+{
+	"private": true,
+	"name": "jerbo",
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"test": "turbo run test",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@packages/eslint-config": "workspace:*",
+		"eslint": "^8.57.1",
+		"prettier": "^3.3.3",
+		"prettier-plugin-svelte": "^3.2.7",
+		"turbo": "^2.2.3"
+	},
+	"packageManager": "pnpm@9.12.0+sha256.a61b67ff6cc97af864564f4442556c22a04f2e5a7714fbee76a1011361d9b726",
+	"engines": {
+		"node": ">=20"
+	}
+}

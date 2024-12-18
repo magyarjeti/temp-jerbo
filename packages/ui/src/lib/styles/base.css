@@ -1,0 +1,22 @@
+body {
+	@apply typo-body-small;
+}
+
+mark {
+	box-shadow:
+		-10px 0 0 rgb(var(--m3-color-primary)),
+		10px 0 0 rgb(var(--m3-color-primary));
+	@apply typo-body-large
+	bg-primary
+	box-decoration-clone
+	py-2
+	leading-[calc(100%+theme(spacing.4))]
+	leading-normal
+	text-on-primary
+	before:mt-[1.5em]
+	before:block
+	before:content-['']
+	after:mb-[1.5em]
+	after:block
+	after:content-[''];
+}

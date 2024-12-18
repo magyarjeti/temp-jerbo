@@ -1,0 +1,16 @@
+{
+	"name": "@packages/page-meta",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		".": "./src/index.svelte.ts"
+	},
+	"devDependencies": {
+		"@packages/config-typescript": "workspace:*",
+		"@packages/eslint-config": "workspace:*",
+		"svelte": "^5.1.9",
+		"typescript": "^5.3.3",
+		"vitest": "^1.3.1"
+	}
+}

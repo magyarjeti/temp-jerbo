@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Embed snapshot 1`] = `
+<div>
+  <a
+    class="embedly-card"
+    data-card-analytics="1"
+    data-card-chrome="1"
+    data-card-controls="0"
+    data-card-recommend="0"
+    data-card-via=""
+    data-card-width=""
+  />
+</div>
+`;

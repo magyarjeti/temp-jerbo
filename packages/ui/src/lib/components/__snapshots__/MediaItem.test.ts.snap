@@ -1,0 +1,77 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`MediaItem with mediaItem 1`] = `
+<div>
+  <figure>
+    <picture>
+      <source
+        media="(max-width: 123px)"
+        srcset="http://example.com/xxs"
+      />
+      <source
+        media="(max-width: 234px)"
+        srcset="http://example.com/xs"
+      />
+      <source
+        media="(max-width: 456px)"
+        srcset="http://example.com/sm"
+      />
+      <source
+        media="(max-width: 567px)"
+        srcset="http://example.com/md"
+      />
+      <source
+        media="(max-width: 1234px)"
+        srcset="http://example.com/lg"
+      />
+      <source
+        media="(max-width: 2345px)"
+        srcset="http://example.com/xl"
+      />
+      <source
+        media="(max-width: 4578px)"
+        srcset="http://example.com/xxl"
+      />
+      
+       
+      <img
+        alt="test caption"
+        src="http://example.com"
+      />
+    </picture>
+    
+     
+    <figcaption
+      class="mt-1 inline-flex flex-wrap items-center gap-3"
+    >
+      <div
+        style="display: contents; --icon-size: 16;"
+      >
+        <span
+          class="jeti-icon svelte-1pzkbd4"
+        >
+          photo_camera
+        </span>
+      </div>
+       
+      <span
+        class="typo-body-small"
+      >
+        test caption
+      </span>
+       
+    </figcaption>
+  </figure>
+</div>
+`;
+
+exports[`MediaItem with src 1`] = `
+<div>
+  <figure>
+    <img
+      src="http://example.com"
+    />
+     
+  </figure>
+</div>
+`;

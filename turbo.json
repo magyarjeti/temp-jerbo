@@ -1,0 +1,57 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"tasks": {
+		"build": {
+			"env": [
+				"PUBLIC_JERBO_SITE_URL",
+				"PUBLIC_JERBO_GATEWAY_URL",
+				"PUBLIC_JERBO_REDIS_DB",
+				"JERBO_REDIS_URL",
+				"JERBO_REFRESH_SECRET",
+				"JERBO_GATEWAY_SECRET",
+				"PUBLIC_JERBO_CRM_URL"
+			],
+			"dependsOn": [
+				"^build"
+			],
+			"outputs": [
+				".svelte-kit/**",
+				".vercel/**"
+			],
+			"inputs": [
+				"apps/blog/package.json",
+				"apps/blog/**/*",
+				"apps/mehrlicht/package.json",
+				"apps/mehrlicht/**/*"
+			]
+		},
+		"lint": {
+			"inputs": [
+				"apps/blog/**/*",
+				"apps/mehrlicht/**/*",
+				"packages/**/*"
+			]
+		},
+		"generate": {
+			"inputs": [
+				"apps/blog/**/*",
+				"apps/mehrlicht/**/*",
+				"packages/**/*"
+			]
+		},
+		"test": {},
+		"dev": {
+			"dependsOn": [
+				"@packages/api#generate"
+			],
+			"cache": false,
+			"persistent": true,
+			"inputs": [
+				"apps/blog/package.json",
+				"apps/blog/**/*",
+				"apps/mehrlicht/package.json",
+				"apps/mehrlicht/**/*"
+			]
+		}
+	}
+}

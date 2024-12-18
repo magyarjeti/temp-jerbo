@@ -1,0 +1,221 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jerbo-blog
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/auth-secret: jerbo-basic-auth
+    nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: sandbox.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: 444.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: qubit.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: jo.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: amnesty.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: babramegy.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: drogriporter.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: ezerkolibri.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: forraspont.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: geekz.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: helsinkifigyelo.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: insighthungary.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: kerkult.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: pendulum.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: rontgen.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: ataszjelenti.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: szabadnem.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: szuveren.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: voxpopuli.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: vifon.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80
+    - host: yolovilag.jeti.dev
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jerbo-blog
+                port:
+                  number: 80

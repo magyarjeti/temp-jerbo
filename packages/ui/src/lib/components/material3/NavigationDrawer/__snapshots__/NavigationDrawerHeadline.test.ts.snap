@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavigationDrawerHeadline snapshot 1`] = `
+<div>
+  <div
+    class="typo-title-small py-3 pl-4 pr-6"
+  />
+</div>
+`;

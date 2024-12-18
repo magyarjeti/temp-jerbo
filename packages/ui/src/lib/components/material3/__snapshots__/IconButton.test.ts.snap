@@ -1,0 +1,40 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Filled IconButton snapshot 1`] = `
+<div>
+  <button
+    class="cursor-pointer inline-flex items-center justify-center shape-full typo-label-medium h-10 w-10 text-[1em] bg-primary text-on-primary hover:text-on-primary state-layers state-layer-hover-on-primary state-layer-focus-on-primary disabled:text-on-surface/38 disabled:border-on-surface/12"
+  >
+    <span
+      class="jeti-icon svelte-1pzkbd4"
+    />
+  </button>
+  
+</div>
+`;
+
+exports[`Outlined IconButton snapshot 1`] = `
+<div>
+  <button
+    class="cursor-pointer inline-flex items-center justify-center shape-full typo-label-medium h-10 w-10 text-[1em] border border-outline state-layers state-layer-hover-on-surface-variant state-layer-focus-on-surface-variant disabled:text-on-surface/38 disabled:border-on-surface/12"
+  >
+    <span
+      class="jeti-icon svelte-1pzkbd4"
+    />
+  </button>
+  
+</div>
+`;
+
+exports[`Standard IconButton snapshot 1`] = `
+<div>
+  <button
+    class="cursor-pointer inline-flex items-center justify-center shape-full typo-label-medium h-10 w-10 text-[1em] text-primary state-layers state-layer-hover-on-surface-variant state-layer-focus-on-surface-variant disabled:text-on-surface/38"
+  >
+    <span
+      class="jeti-icon svelte-1pzkbd4"
+    />
+  </button>
+  
+</div>
+`;

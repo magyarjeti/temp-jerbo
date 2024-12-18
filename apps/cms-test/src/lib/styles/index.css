@@ -1,0 +1,21 @@
+@import '@packages/ui/styles.css';
+
+@layer base {
+	h1 {
+		@apply typo-display-large;
+	}
+	h2 {
+		@apply typo-display-medium;
+	}
+	h3 {
+		@apply typo-display-small;
+	}
+	blockquote {
+		> * {
+			@apply jerbo-blockquote-text;
+		}
+		a {
+			@apply jerbo-link;
+		}
+	}
+}

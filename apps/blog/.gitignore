@@ -1,0 +1,14 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/static/themeSwitcher
+/package
+.env
+.env.*
+!.env.example
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+static/mockServiceWorker.js
+/playwright-report
+/test-results

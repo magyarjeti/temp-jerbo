@@ -1,0 +1,24 @@
+networks:
+  traefik:
+    external: true
+
+services:
+  blog:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/home/node
+    working_dir: /home/node
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=traefik'
+      - 'traefik.http.routers.${PROJECT_NAME}_blog.rule=HostRegexp(`{subdomain:[a-z]+}.${DOMAIN}`)'
+      - 'traefik.http.routers.${PROJECT_NAME}_blog.entrypoints=web'
+    expose:
+      - '3000'
+    command: sh -c "pnpm --filter=@apps/blog dev --port 3000 --host 0.0.0.0"
+    init: true
+    tty: true
+    networks:
+      - traefik

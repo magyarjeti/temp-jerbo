@@ -1,0 +1,57 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Elevated Button snapshot 1`] = `
+<div>
+  <button
+    class="max-w-full typo-label-large inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 py-1 shape-full bg-surface-container text-primary state-layers state-layer-focus-primary state-layer-hover-primary elevation-1 hover:elevation-2 px-6"
+  >
+     
+    <span
+      class="block min-w-0"
+    />
+  </button>
+  
+</div>
+`;
+
+exports[`Filled Button snapshot 1`] = `
+<div>
+  <button
+    class="max-w-full typo-label-large inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 py-1 shape-full bg-primary text-on-primary state-layers state-layer-focus-on-primary state-layer-hover-on-primary hover:elevation-1 disabled:pointer-events-none disabled:bg-on-surface/12 disabled:text-on-surface/38 px-6"
+  >
+     
+    <span
+      class="block min-w-0"
+    />
+  </button>
+  
+</div>
+`;
+
+exports[`Outlined Button snapshot 1`] = `
+<div>
+  <button
+    class="max-w-full typo-label-large inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 py-1 shape-full bg-transparent border border-outline-variant text-primary focus:border-primary state-layers state-layer-hover-primary state-layer-focus-primary px-6"
+  >
+     
+    <span
+      class="block min-w-0"
+    />
+  </button>
+  
+</div>
+`;
+
+exports[`Text Button snapshot 1`] = `
+<div>
+  <button
+    class="max-w-full typo-label-large inline-flex min-h-10 cursor-pointer items-center justify-center gap-2 py-1 text-primary shape-full state-layers state-layer-focus-primary state-layer-hover-primary disabled:text-on-surface/38 px-3"
+  >
+     
+    <span
+      class="block min-w-0"
+    />
+  </button>
+  
+</div>
+`;

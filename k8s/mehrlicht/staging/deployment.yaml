@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jerbo-mehrlicht
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jerbo-mehrlicht
+      version: staging
+  template:
+    metadata:
+      labels:
+        app: jerbo-mehrlicht
+        version: staging
+    spec:
+      containers:
+        - name: jerbo-mehrlicht
+          image: registry.yntwrk.com:5000/magyarjeti/jerbo-mehrlicht:staging
+          imagePullPolicy: Always
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1Gi
+            requests:
+              cpu: '2'
+              ephemeral-storage: 2Gi
+              memory: 1Gi
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: privaterepo

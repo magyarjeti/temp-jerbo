@@ -1,0 +1,15 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Skeleton snapshot 1`] = `
+<div>
+  <div
+    class="pulse bg-surface-container-highest opacity-1 svelte-54far3"
+  >
+    <span
+      class="sr-only"
+    >
+      Betöltés alatt
+    </span>
+  </div>
+</div>
+`;

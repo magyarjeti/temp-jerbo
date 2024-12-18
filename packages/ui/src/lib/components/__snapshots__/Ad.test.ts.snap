@@ -1,0 +1,14 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Ad snapshot 1`] = `
+<div>
+  <div
+    class="contents"
+  >
+    <div
+      class="contents svelte-223tdn"
+      id="ap-test-id-1"
+    />
+  </div>
+</div>
+`;

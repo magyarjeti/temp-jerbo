@@ -1,0 +1,24 @@
+@import './tailwind.css';
+
+.container {
+	@apply grid justify-center;
+	grid-template-columns: min(800px, calc(100% - (theme('spacing.4') * 2)));
+}
+
+.container-wide {
+	@apply grid justify-center;
+	grid-template-columns: min(1128px, calc(100% - (theme('spacing.4') * 2)));
+}
+
+.jerbo-blockquote-text {
+	@apply typo-body-large inline bg-primary box-decoration-clone p-2 leading-[calc(100%+theme(spacing.4))] text-on-primary;
+}
+
+.jerbo-link {
+	@apply underline hover:no-underline;
+}
+
+.disabled,
+[disabled] {
+	@apply pointer-events-none cursor-not-allowed;
+}

@@ -1,0 +1,8 @@
+{
+	"extends": "@packages/config-typescript/base.json",
+	"compilerOptions": {
+		"target": "ESNext"
+	},
+	"include": ["src", "../auth/src/encrypt.ts", "../auth/src/hash.ts"],
+	"exclude": ["dist", "build", "node_modules", "**/*.spec.ts"]
+}

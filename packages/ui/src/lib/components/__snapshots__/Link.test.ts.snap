@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`link snapshot 1`] = `
+<div>
+  <a
+    href="http://example.com"
+    rel="noopener noreferrer"
+    target="_blank"
+  />
+  
+  
+</div>
+`;

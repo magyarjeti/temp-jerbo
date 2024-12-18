@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`JetiIcon snapshot 1`] = `
+<div>
+  <span
+    class="jeti-icon svelte-1pzkbd4"
+  />
+</div>
+`;

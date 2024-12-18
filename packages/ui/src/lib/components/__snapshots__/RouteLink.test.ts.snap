@@ -1,0 +1,12 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`RouteLink snapshot 1`] = `
+<div>
+  <a
+    aria-disabled="false"
+    aria-label="title"
+    href="http://example.com"
+    title="title"
+  />
+</div>
+`;

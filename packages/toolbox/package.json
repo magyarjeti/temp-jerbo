@@ -1,0 +1,15 @@
+{
+	"name": "@packages/toolbox",
+	"version": "0.0.0",
+	"type": "module",
+	"private": true,
+	"exports": {
+		"./*": "./src/*.ts",
+		"./string": "./src/string/index.ts"
+	},
+	"devDependencies": {
+		"@packages/config-typescript": "workspace:*",
+		"@packages/eslint-config": "workspace:*",
+		"@types/node": "^20.11.28"
+	}
+}

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jerbo-blog-canary
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jerbo-blog-canary
+      version: canary
+  template:
+    metadata:
+      labels:
+        app: jerbo-blog-canary
+        version: canary
+    spec:
+      containers:
+        - name: jerbo-blog-canary
+          image: registry.yntwrk.com:5000/magyarjeti/jerbo-blog:canary
+          imagePullPolicy: Always
+          env:
+            - name: MY_POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          resources:
+            limits:
+              cpu: '2'
+              memory: 1Gi
+            requests:
+              cpu: '2'
+              ephemeral-storage: 2Gi
+              memory: 1Gi
+          ports:
+            - containerPort: 3000
+      imagePullSecrets:
+        - name: privaterepo

@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`NavigationDrawerItem snapshot 1`] = `
+<div>
+  <button
+    class="typo-label-large text-on-surface-variant shape-full state-layers state-layer-hover-on-surface state-layer-focus-on-surface flex w-full items-center gap-3 py-3 pl-4 pr-6"
+  >
+    <span
+      class="inline-flex h-[24px] w-[24px] items-center justify-center"
+    >
+      <span
+        class="bg-outline-variant h-[12px] w-[12px] rounded-full"
+      />
+    </span>
+     
+  </button>
+  
+</div>
+`;

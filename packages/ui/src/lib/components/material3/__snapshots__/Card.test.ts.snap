@@ -1,0 +1,28 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Elevated Card snapshot 1`] = `
+<div>
+  <div
+    class="overflow-hidden shape-medium bg-surface-container-low elevation-1"
+  />
+  
+</div>
+`;
+
+exports[`Filled Card snapshot 1`] = `
+<div>
+  <div
+    class="overflow-hidden shape-medium bg-surface-container-highest"
+  />
+  
+</div>
+`;
+
+exports[`Outlined Card snapshot 1`] = `
+<div>
+  <div
+    class="overflow-hidden shape-medium bg-surface border border-outline-variant"
+  />
+  
+</div>
+`;
