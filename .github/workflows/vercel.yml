@@ -1,0 +1,45 @@
+name: Vercel Deploy Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      application:
+        description: 'Choose application to deploy'
+        required: true
+        type: choice
+        options:
+          - blog
+          - mehrlicht
+          - lakmusz
+          - qubit
+          - 444hu
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Vercel
+        id: vercel-deploy
+        uses: BetaHuhn/deploy-to-vercel-action@v1
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: '--prod'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          working-directory: './${{ github.event.inputs.application }}'
+
+      - name: Set Wildcard Alias
+        run: |
+          echo "🚀 Setting wildcard alias for ${{ github.event.inputs.application }}..."
+          COMMIT_ID=$(git rev-parse --short HEAD)
+          WILDCARD_SUBDOMAIN="${{ github.event.inputs.application }}.${COMMIT_ID}.vercel.jeti.dev"
+          vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} $WILDCARD_SUBDOMAIN --token=${{ secrets.VERCEL_TOKEN }}
+          echo "✅ Alias set: https://${WILDCARD_SUBDOMAIN}"
+
+      - name: Post Deployment Details
+        if: success()
+        run: |
+          echo "🚀 Deployment successful for ${{ github.event.inputs.application }}."
+          echo "🔗 Visit the app: https://${{ github.event.inputs.application }}.${{ github.sha }}.vercel.jeti.dev"

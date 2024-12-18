@@ -1,0 +1,75 @@
+name: 002 - Staging Deploy Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'Select the app to deploy to STAGING'
+        required: true
+        default: 'blog'
+        type: choice
+        options:
+          - blog
+          - mehrlicht
+          - lakmusz
+          - qubit
+          - 444hu
+      use_remote_cache:
+        description: 'Enable Turborepo remote cache (true/false)'
+        required: false
+        default: 'true'
+        type: boolean
+
+jobs:
+  build-and-deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Verify Test Success via Commit Status
+        run: |
+          STATUS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/status \
+          | jq -r '.statuses[] | select(.context=="Test Workflow - ${{ inputs.app }}") | .state')
+
+          if [ "$STATUS" != "success" ]; then
+            echo "Tests for ${{ inputs.app }} were not successful. Cannot proceed to deploy."
+            exit 1
+          fi
+          echo "Tests for ${{ inputs.app }} verified as successful!"
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Docker Image Name
+        id: image
+        run: |
+          IMAGE_NAME="registry.yntwrk.com:5000/magyarjeti/${{ inputs.app }}:staging-${{ github.sha }}"
+          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
+
+      - name: Build Docker Image
+        run: |
+          echo "Building image for ${{ inputs.app }} in STAGING environment"
+          docker build -t ${{ env.IMAGE_NAME }} -f apps/${{ inputs.app }}/Dockerfile \
+            --build-arg ENV=staging \
+            --build-arg PUBLIC_JERBO_SITE_URL=${{ secrets.PUBLIC_JERBO_SITE_URL }} \
+            --build-arg PUBLIC_JERBO_GATEWAY_URL=${{ secrets.PUBLIC_JERBO_GATEWAY_URL }} \
+            .
+
+      - name: Login to Docker Registry
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login registry.yntwrk.com:5000 -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker Image
+        run: |
+          docker push ${{ env.IMAGE_NAME }}
+
+      - name: Setup Kubernetes Context
+        uses: azure/k8s-set-context@v1
+        with:
+          method: kubeconfig
+          kubeconfig: ${{ secrets.KUBE_CONFIG_STG }}
+
+      - name: Deploy to Kubernetes (STAGING)
+        run: |
+          echo "Deploying ${{ inputs.app }} to STAGING..."
+          kubectl set image deployment/${{ inputs.app }} ${{ inputs.app }}=${{ env.IMAGE_NAME }} --record
+          kubectl rollout status deployment/${{ inputs.app }}

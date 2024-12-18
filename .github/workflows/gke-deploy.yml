@@ -1,0 +1,60 @@
+name: Google Kubernetes Deploy Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'Select the app to deploy to GKE'
+        required: true
+        default: 'blogs'
+        type: choice
+        options:
+          - blog
+          - mehrlicht
+          - lakmusz
+          - qubit
+          - 444hu
+      environment:
+        description: 'Select the environment (staging, canary, prod)'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - canary
+          - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set GCP Project and Region
+        run: |
+          gcloud config set project ${{ secrets.GCP_PROJECT }}
+          gcloud config set compute/region ${{ secrets.GCP_REGION }}
+
+      - name: Set Docker Image Name
+        id: image
+        run: |
+          IMAGE_NAME="gcr.io/${{ secrets.GCP_PROJECT }}/${{ inputs.app }}:${{ inputs.environment }}-${{ github.sha }}"
+          echo "image_name=${IMAGE_NAME}" >> $GITHUB_ENV
+
+      - name: Build and Push Docker Image
+        run: |
+          docker build -t ${{ env.image_name }} -f apps/${{ inputs.app }}/Dockerfile .
+          gcloud auth configure-docker
+          docker push ${{ env.image_name }}
+
+      - name: Deploy to GKE
+        run: |
+          gcloud container clusters get-credentials ${{ secrets.GKE_CLUSTER }} --region ${{ secrets.GCP_REGION }}
+          kubectl set image deployment/${{ inputs.app }} ${{ inputs.app }}=${{ env.image_name }} --record
+          kubectl rollout status deployment/${{ inputs.app }}

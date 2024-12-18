@@ -1,0 +1,39 @@
+name: Emergency Prod Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: 'Select the app to deploy to PRODUCTION'
+        required: true
+        default: 'blogs'
+        type: choice
+        options:
+          - blog
+          - mehrlicht
+          - lakmusz
+          - qubit
+          - 444hu
+
+jobs:
+  deploy_prod:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Build Success Marker
+        uses: actions/download-artifact@v3
+        with:
+          name: build-success-${{ inputs.app }}
+        continue-on-error: false
+
+      - name: Verify Build Success
+        run: |
+          if [ ! -f build-success.txt ]; then
+            echo "Build results are missing or failed. Cannot proceed to deploy."
+            exit 1
+          fi
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Deploy to PRODUCTION
+        run: echo "Deploying ${{ inputs.app }} to PRODUCTION"
