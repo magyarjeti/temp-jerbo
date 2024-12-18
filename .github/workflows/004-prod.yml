@@ -1,10 +1,10 @@
-name: 004 - Production Deploy Workflow
+name: 002 - Production Deploy Workflow
 
 on:
   workflow_dispatch:
     inputs:
       app:
-        description: 'Select the app to deploy to PROD'
+        description: 'Select the app to deploy to PRODUCTION'
         required: true
         default: 'blog'
         type: choice
@@ -21,9 +21,21 @@ on:
         type: boolean
 
 jobs:
-  build-and-deploy-prod:
+  build-and-deploy-production:
     runs-on: ubuntu-latest
     steps:
+      - name: Verify Test Success via Commit Status
+        run: |
+          STATUS=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+          https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/status \
+          | jq -r '.statuses[] | select(.context=="Test Workflow - ${{ inputs.app }}") | .state')
+
+          if [ "$STATUS" != "success" ]; then
+            echo "Tests for ${{ inputs.app }} were not successful. Cannot proceed to deploy."
+            exit 1
+          fi
+          echo "Tests for ${{ inputs.app }} verified as successful!"
+
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -35,7 +47,7 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          echo "Building image for ${{ inputs.app }} in PROD environment"
+          echo "Building image for ${{ inputs.app }} in production environment"
           docker build -t ${{ env.IMAGE_NAME }} -f apps/${{ inputs.app }}/Dockerfile \
             --build-arg ENV=prod \
             --build-arg PUBLIC_JERBO_SITE_URL=${{ secrets.PUBLIC_JERBO_SITE_URL }} \
@@ -54,10 +66,10 @@ jobs:
         uses: azure/k8s-set-context@v1
         with:
           method: kubeconfig
-          kubeconfig: ${{ secrets.KUBE_CONFIG_PROD }}
+          kubeconfig: ${{ secrets.KUBE_CONFIG_STG }}
 
-      - name: Deploy to Kubernetes (PROD)
+      - name: Deploy to Kubernetes (production)
         run: |
-          echo "Deploying ${{ inputs.app }} to PROD..."
+          echo "Deploying ${{ inputs.app }} to production..."
           kubectl set image deployment/${{ inputs.app }} ${{ inputs.app }}=${{ env.IMAGE_NAME }} --record
           kubectl rollout status deployment/${{ inputs.app }}
